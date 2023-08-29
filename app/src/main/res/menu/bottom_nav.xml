@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        android:icon="@drawable/selector_home"/>
+
+    <item
+        android:id="@+id/town"
+        android:title="@string/town"
+        android:icon="@drawable/selector_town"/>
+
+    <item
+        android:id="@+id/around"
+        android:icon="@drawable/selector_around"
+        android:title="@string/around"/>
+
+    <item
+        android:id="@+id/chat"
+        android:icon="@drawable/selector_chatting"
+        android:title="@string/chat"/>
+
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/selector_setting"
+        android:title="@string/setting"/>
+
+</menu>
