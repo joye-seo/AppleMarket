@@ -1,9 +1,12 @@
 package com.example.applemarket.data
 
+import androidx.versionedparcelable.ParcelField
 import com.example.applemarket.R
+import java.io.Serializable
+import java.text.DecimalFormat
 
 object GoodsDB {
-    private val goodsList = mutableListOf(
+    val goodsList = mutableListOf(
         Goods(
             R.drawable.sample1,
             "산진 한달된 선풍기 팝니다",
@@ -12,7 +15,8 @@ object GoodsDB {
             1000,
             "서울 서대문구 창천동",
             13,
-            25
+            25,
+            10
         ),
         Goods(
             R.drawable.sample2,
@@ -22,7 +26,8 @@ object GoodsDB {
             20000,
             "인천 계양구 귤현동",
             8,
-            28
+            28,
+            100
         ),
         Goods(
             R.drawable.sample3,
@@ -32,7 +37,8 @@ object GoodsDB {
             10000,
             "대구 수성구 범어동",
             23,
-            5
+            5,
+            1000
         ),
         Goods(
             R.drawable.sample4,
@@ -42,7 +48,8 @@ object GoodsDB {
             10000,
             "부산 해운대구 우제2동",
             14,
-            17
+            17,
+            10000
         ),
         Goods(
             R.drawable.sample5,
@@ -52,9 +59,9 @@ object GoodsDB {
             150000,
             "부산 연제구 연산제8동",
             22,
-            9
+            9,
+            100000
         ),
-
         Goods(
             R.drawable.sample6,
             "프라다 복조리백",
@@ -63,9 +70,9 @@ object GoodsDB {
             50000,
             "수원시 영통구 원천동",
             25,
-            16
+            16,
+            1000000
         ),
-
         Goods(
             R.drawable.sample7,
             "울산 동해오션뷰 60평 복층 펜트하우스 1일 숙박권 펜션 힐링 숙소 별장",
@@ -74,7 +81,8 @@ object GoodsDB {
             150000,
             "울산 남구 옥동",
             142,
-            54
+            54,
+            10000000
         ),
         Goods(
             R.drawable.sample8,
@@ -84,7 +92,8 @@ object GoodsDB {
             180000,
             "부산 동래구 온천제2동",
             31,
-            7
+            7,
+            10000000
         ),
         Goods(
             R.drawable.sample9,
@@ -94,7 +103,9 @@ object GoodsDB {
             30000,
             "강원 원주시 명륜2동",
             7,
-            28
+            28,
+            100000000
+
         ),
         Goods(
             R.drawable.sample10,
@@ -104,7 +115,8 @@ object GoodsDB {
             190000,
             "서울 중구 동화동",
             40,
-            6
+            6,
+            200000000
         ),
     )
 }
@@ -118,4 +130,36 @@ data class Goods(
     val address: String,
     val like: Int,
     val chat: Int,
-)
+    val pullUp: Int
+) : Serializable {
+    fun getFormattedMoney(): String {
+        val formatter = DecimalFormat("#,###")
+        return "${formatter.format(price)} 원"
+    }
+
+    fun getFormattedPullUp(): String {
+
+        val resultTime =
+            when {
+                pullUp < 60 -> {
+                    "${pullUp}초 전"
+                }
+
+                pullUp in 60..3599 -> {
+                    val minute = pullUp / 60
+                    "${minute}분 전 "
+                }
+
+                pullUp in 3600..86399 -> {
+                    val hour = pullUp / 3600
+                    "${hour}시간 전 "
+                }
+
+                else -> {
+                    val day = pullUp / 86400
+                    "${day}일 전 "
+                }
+            }
+        return resultTime
+    }
+}
