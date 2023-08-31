@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/btn_modify"
+        android:title="중고거래 수정하기"
+        />
+    <item
+        android:id="@+id/btn_delete"
+        android:title="중고거래 삭제하기"
+
+        />
+
+
+</menu>

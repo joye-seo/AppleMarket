@@ -1,12 +1,12 @@
-package com.example.applemarket
+package com.example.applemarket.Main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.applemarket.adapter.HomeAdapter
 import com.example.applemarket.data.GoodsDB
 import com.example.applemarket.databinding.FragmentHomeBinding
 

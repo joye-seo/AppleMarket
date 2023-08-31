@@ -1,14 +1,10 @@
-package com.example.applemarket
+package com.example.applemarket.adapter
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.MultiTransformation
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.example.applemarket.DetailHomeActivity
 import com.example.applemarket.data.Goods
 import com.example.applemarket.databinding.ItemHomeSaleListBinding
 
@@ -38,14 +34,12 @@ class HomeAdapter(private val list: MutableList<Goods>) : RecyclerView.Adapter<H
             ivSale.setImageResource(goods.picture)
 
 
-//            itemView.setOnClickListener {
-//
-//                val myIntent = Intent(itemView.context, DetailHomeActivity::class.java)
-//                itemView.context.startActivity(myIntent)
-//            }
+            itemView.setOnClickListener {
 
-
+                val myIntent = Intent(itemView.context, DetailHomeActivity::class.java)
+                myIntent.putExtra("Data",goods)
+                itemView.context.startActivity(myIntent)
+            }
         }
     }
-
 }

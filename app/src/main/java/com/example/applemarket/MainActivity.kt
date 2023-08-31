@@ -3,6 +3,11 @@ package com.example.applemarket
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.applemarket.Main.AroundFragment
+import com.example.applemarket.Main.ChatFragment
+import com.example.applemarket.Main.HomeFragment
+import com.example.applemarket.Main.SettingFragment
+import com.example.applemarket.Main.TownFragment
 import com.example.applemarket.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
