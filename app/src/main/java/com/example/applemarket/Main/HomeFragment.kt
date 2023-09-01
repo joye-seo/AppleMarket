@@ -1,6 +1,5 @@
 package com.example.applemarket.Main
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -14,11 +13,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.applemarket.MainActivity
 import com.example.applemarket.R
 import com.example.applemarket.adapter.HomeAdapter
@@ -46,6 +46,8 @@ class HomeFragment : Fragment() {
         homeAdapter = HomeAdapter(GoodsDB.goodsList)
         initView()
         alarm()
+        scrollUp()
+
     }
 
     private fun initView() = with(binding) {
@@ -55,7 +57,8 @@ class HomeFragment : Fragment() {
 
     private fun alarm() = with(binding) {
         btnAlarm.setOnClickListener {
-            val manager =requireContext().getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+            val manager =
+                requireContext().getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
 
             val builder: NotificationCompat.Builder
 
@@ -121,6 +124,36 @@ class HomeFragment : Fragment() {
             manager.notify(11, builder.build())
 
 
+        }
+
+    }
+
+    private fun scrollUp() {
+        val fadeIn = AlphaAnimation(0f, 1f).apply { duration = 500 }
+        val fadeOut = AlphaAnimation(1f, 0f).apply { duration = 500 }
+        var isTop = true
+
+        binding.rvHomeSaleList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (!binding.rvHomeSaleList.canScrollVertically(-1)
+                    && newState == RecyclerView.SCROLL_STATE_IDLE
+                ) {
+                    binding.fabUp.startAnimation(fadeOut)
+                    binding.fabUp.visibility = View.GONE
+                    isTop = true
+                } else {
+                    if (isTop) {
+                        binding.fabUp.visibility = View.VISIBLE
+                        binding.fabUp.startAnimation(fadeIn)
+                        isTop = false
+                    }
+                }
+            }
+        })
+
+        binding.fabUp.setOnClickListener {
+            binding.rvHomeSaleList.smoothScrollToPosition(0)
         }
 
     }

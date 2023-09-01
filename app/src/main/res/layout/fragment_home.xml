@@ -77,4 +77,15 @@
         app:layout_constraintTop_toBottomOf="@id/action_bar"
         tools:listitem="@layout/item_home_sale_list" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:visibility="gone"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/baseline_keyboard_arrow_up_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
