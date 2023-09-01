@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -11,7 +12,9 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_profile" />
+        android:src="@drawable/ic_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -19,12 +22,17 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_sale"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="아이템 이름 입니다"
             android:textSize="16sp" />
 
@@ -73,8 +81,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_gravity="end"
             android:layout_height="15dp"
+            android:layout_gravity="end"
             android:layout_marginTop="10dp"
             android:gravity="end"
             android:orientation="horizontal">
@@ -82,22 +90,23 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_home_chat"
                 android:layout_width="wrap_content"
-                android:adjustViewBounds="true"
                 android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:src="@drawable/ic_home_chat" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_home_chat"
-                android:layout_marginStart="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginStart="3dp"
                 android:text="1"
                 android:textColor="#4C5259"
                 android:textSize="12sp" />
+
             <Space
                 android:layout_width="10dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_home_heart"
@@ -111,9 +120,8 @@
                 android:id="@+id/tv_home_heart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-
                 android:layout_gravity="center_vertical"
+                android:layout_marginStart="3dp"
                 android:text="1"
                 android:textColor="#4C5259"
                 android:textSize="12sp" />
@@ -124,5 +132,11 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="#E2E2E2"
+        app:layout_constraintTop_toBottomOf="@id/iv_sale"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
