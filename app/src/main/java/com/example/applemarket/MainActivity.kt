@@ -1,5 +1,6 @@
 package com.example.applemarket
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         //아이템 클릭? 시 선택된 컬러
         binding.navMain.itemActiveIndicatorColor = null
+
+        binding.fabWrite.setOnClickListener {
+//            val intent = Intent(this, DetailHomeActivity::class.java)
+//            startActivity(intent)
+        }
 
 
     }
