@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -135,8 +136,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:background="#E2E2E2"
-        app:layout_constraintTop_toBottomOf="@id/iv_sale"/>
+        app:layout_constraintTop_toBottomOf="@id/layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

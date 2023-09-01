@@ -21,6 +21,7 @@ class DetailHomeActivity : AppCompatActivity() {
 
         clickData()
         actionBarClickListener()
+        binding.actionBar.bringToFront()
 //        getData()
     }
 
