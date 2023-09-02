@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
@@ -43,7 +44,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeAdapter = HomeAdapter(GoodsDB.goodsList)
+        homeAdapter = HomeAdapter(GoodsDB.goodsList, requireContext())
         initView()
         alarm()
         scrollUp()
@@ -53,6 +54,25 @@ class HomeFragment : Fragment() {
     private fun initView() = with(binding) {
         rvHomeSaleList.layoutManager = LinearLayoutManager(context)
         rvHomeSaleList.adapter = homeAdapter
+
+//        rvHomeSaleList.addOnItemTouchListener(object : RecyclerView.OnItemTouchListener {
+//            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+//                val child = rv.findChildViewUnder(e.x, e.y)
+//                val position = child?.let { rv.getChildAdapterPosition(it) }
+//                if (position != null) {
+//                    homeAdapter.removeItem(position)
+//                }
+//                return true
+//            }
+//
+//            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+//            }
+//
+//            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+//            }
+//
+//        })
+
     }
 
     private fun alarm() = with(binding) {
