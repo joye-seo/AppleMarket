@@ -1,8 +1,8 @@
 package com.example.applemarket.data
 
-import androidx.versionedparcelable.ParcelField
+import android.os.Parcelable
 import com.example.applemarket.R
-import java.io.Serializable
+import kotlinx.parcelize.Parcelize
 import java.text.DecimalFormat
 
 object GoodsDB {
@@ -16,7 +16,8 @@ object GoodsDB {
             "서울 서대문구 창천동",
             13,
             25,
-            10
+            10,
+            false
         ),
         Goods(
             R.drawable.sample2,
@@ -27,7 +28,8 @@ object GoodsDB {
             "인천 계양구 귤현동",
             8,
             28,
-            100
+            100,
+            false
         ),
         Goods(
             R.drawable.sample3,
@@ -38,7 +40,8 @@ object GoodsDB {
             "대구 수성구 범어동",
             23,
             5,
-            1000
+            1000,
+            false
         ),
         Goods(
             R.drawable.sample4,
@@ -49,7 +52,8 @@ object GoodsDB {
             "부산 해운대구 우제2동",
             14,
             17,
-            10000
+            10000,
+            false
         ),
         Goods(
             R.drawable.sample5,
@@ -60,7 +64,8 @@ object GoodsDB {
             "부산 연제구 연산제8동",
             22,
             9,
-            100000
+            100000,
+            false
         ),
         Goods(
             R.drawable.sample6,
@@ -71,7 +76,8 @@ object GoodsDB {
             "수원시 영통구 원천동",
             25,
             16,
-            1000000
+            1000000,
+            false
         ),
         Goods(
             R.drawable.sample7,
@@ -82,18 +88,21 @@ object GoodsDB {
             "울산 남구 옥동",
             142,
             54,
-            10000000
+            10000000,
+            false
         ),
         Goods(
             R.drawable.sample8,
             "샤넬 탑핸들 가방",
-            "샤넬 트랜디 CC 탑핸들 스몰 램스킨 블랙 금장 플랩백 !\n" + "\n" + "색상 : 블랙\n" + "사이즈 : 25.5cm * 17.5cm * 8cm\n" + "구성 : 본품더스트\n" + "\n" + "급하게 돈이 필요해서 팝니다 ㅠ ㅠ",
+            "샤넬 트랜디 CC 탑핸들 " +
+                    "스몰 램스킨 블랙 금장 플랩백 !\n" + "\n" + "색상 : 블랙\n" + "사이즈 : 25.5cm * 17.5cm * 8cm\n" + "구성 : 본품더스트\n" + "\n" + "급하게 돈이 필요해서 팝니다 ㅠ ㅠ",
             "난쉽",
             180000,
             "부산 동래구 온천제2동",
             31,
             7,
-            10000000
+            10000000,
+            false
         ),
         Goods(
             R.drawable.sample9,
@@ -104,8 +113,8 @@ object GoodsDB {
             "강원 원주시 명륜2동",
             7,
             28,
-            100000000
-
+            100000000,
+            false
         ),
         Goods(
             R.drawable.sample10,
@@ -116,11 +125,13 @@ object GoodsDB {
             "서울 중구 동화동",
             40,
             6,
-            200000000
+            200000000,
+            false
         ),
     )
 }
 
+@Parcelize
 data class Goods(
     val picture: Int,
     val title: String,
@@ -130,8 +141,9 @@ data class Goods(
     val address: String,
     val like: Int,
     val chat: Int,
-    val pullUp: Int
-) : Serializable {
+    val pullUp: Int,
+    var isliked: Boolean
+) : Parcelable {
     fun getFormattedMoney(): String {
         val formatter = DecimalFormat("#,###")
         return "${formatter.format(price)} 원"

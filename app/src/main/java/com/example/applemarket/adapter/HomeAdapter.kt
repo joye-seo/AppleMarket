@@ -40,6 +40,13 @@ class HomeAdapter(private val list: MutableList<Goods>, private val context:Cont
             ivSale.setImageResource(goods.picture)
 
 
+            if (goods.isliked){
+                ivHomeHeart.setImageResource(R.drawable.ic_home_heart_click)
+            }else{
+                ivHomeHeart.setImageResource(R.drawable.ic_home_heart)
+            }
+
+
             itemView.setOnClickListener {
 
                 val myIntent = Intent(itemView.context, DetailHomeActivity::class.java)

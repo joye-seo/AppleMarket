@@ -8,8 +8,8 @@ import com.example.applemarket.databinding.ActivityDetailHomeBinding
 import com.google.android.material.snackbar.Snackbar
 
 class DetailHomeActivity : AppCompatActivity() {
-    private var isClicked = false
-    private lateinit var goods: Goods
+    var isClicked = false
+    private var goods: Goods? = null
 
     private lateinit var binding: ActivityDetailHomeBinding
 
@@ -19,7 +19,9 @@ class DetailHomeActivity : AppCompatActivity() {
         binding = ActivityDetailHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        goods = intent?.getSerializableExtra("Data") as Goods
+
+        goods = intent.getParcelableExtra<Goods>("Data")
+
 
         clickData()
         actionBarClickListener()
@@ -66,6 +68,7 @@ class DetailHomeActivity : AppCompatActivity() {
                     Snackbar.LENGTH_SHORT // 스낵바를 표시할 시간
                 ).show()
                 isClicked = false
+                goods?.isliked = false
             } else {
                 btnHeart.setImageResource(R.drawable.ic_home_heart_click)
                 // 스낵바를 생성하고 표시
@@ -75,7 +78,9 @@ class DetailHomeActivity : AppCompatActivity() {
                     Snackbar.LENGTH_SHORT // 스낵바를 표시할 시간
                 ).show()
                 isClicked = true
+                goods?.isliked = true
             }
+
         }
 
 
@@ -83,13 +88,16 @@ class DetailHomeActivity : AppCompatActivity() {
 
 
     private fun clickData() = with(binding) {
-        tvAddress.text = goods.address
-        tvSaleName.text = goods.title
-        tvContent.text = goods.Content
-        tvNickname.text = goods.seller
-        tvMoney.text = goods.getFormattedMoney()
-        tvTime.text = goods.getFormattedPullUp()
-        ivSale.setImageResource(goods.picture)
+        tvAddress.text = goods?.address
+        tvSaleName.text = goods?.title
+        tvContent.text = goods?.Content
+        tvNickname.text = goods?.seller
+        tvMoney.text = goods?.getFormattedMoney()
+        tvTime.text = goods?.getFormattedPullUp()
+        ivSale.setImageResource(goods?.picture!!)
+
+        isClicked = goods?.isliked == true
+
 
     }
 
