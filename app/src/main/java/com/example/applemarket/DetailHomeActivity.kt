@@ -1,8 +1,10 @@
 package com.example.applemarket
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
+import com.example.applemarket.Main.HomeFragment
 import com.example.applemarket.data.Goods
 import com.example.applemarket.databinding.ActivityDetailHomeBinding
 import com.google.android.material.snackbar.Snackbar
@@ -32,6 +34,12 @@ class DetailHomeActivity : AppCompatActivity() {
     private fun actionBarClickListener() = with(binding) {
 
         btnBack.setOnClickListener {
+
+            val intent = Intent(this@DetailHomeActivity, MainActivity::class.java).apply {
+                putExtra("isClicked", isClicked)
+            }
+            setResult(RESULT_OK, intent)
+            if (!isFinishing) finish()
             onBackPressed()
         }
         btnMore.setOnClickListener {
@@ -97,9 +105,8 @@ class DetailHomeActivity : AppCompatActivity() {
         ivSale.setImageResource(goods?.picture!!)
 
         isClicked = goods?.isliked == true
-
-
     }
+
 
     private fun getData() {
         binding.tvSaleName.text = intent.getStringExtra("ModifyTitle")
